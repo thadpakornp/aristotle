@@ -61,6 +61,10 @@
         <nav class="navbar-mobile">
             <div class="container-fluid">
                 <ul class="navbar-mobile__list list-unstyled">
+                    <li>
+                        <a href="{{ route('backend.home') }}">
+                            <i class="fas fa-home"></i>Home</a>
+                    </li>
                     @role('admin')
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
@@ -91,6 +95,10 @@
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
+                    <li>
+                        <a href="{{ route('backend.home') }}">
+                            <i class="fas fa-home"></i>Home</a>
+                    </li>
                     @role('admin')
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
