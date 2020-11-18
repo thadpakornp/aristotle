@@ -50,7 +50,7 @@
                         <div class="register-link">
                             <p>
                                 Already have account?
-                                <a href="#">Sign In</a>
+                                <a href="{{ route('login') }}">Sign In</a>
                             </p>
                         </div>
                     </div>
