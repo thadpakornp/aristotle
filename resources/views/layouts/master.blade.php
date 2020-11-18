@@ -268,7 +268,7 @@
     @if(session('error'))
     Swal.fire(
         'เกิดข้อผิดพลาด!',
-        '{{ session("error") }}',
+        {{ session('error') }},
         'error'
     )
     @endif
@@ -276,7 +276,7 @@
     @if(session('success'))
     Swal.fire(
         'สำเร็จ!',
-        '{{ session("success") }}',
+        {{ session('success') }},
         'success'
     )
     @endif

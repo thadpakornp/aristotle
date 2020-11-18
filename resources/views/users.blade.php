@@ -12,9 +12,9 @@
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Users List</h2>
-                            <button class="au-btn au-btn-icon au-btn--blue">
+                            <a class="au-btn au-btn-icon au-btn--blue" href="{{ route('backend.users.create') }}">
                                 <i class="zmdi zmdi-plus"></i>add user
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

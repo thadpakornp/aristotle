@@ -28,5 +28,11 @@ Route::group(['middleware' => ['auth','verified'], 'as' => 'backend.', 'prefix' 
         Route::get('/{id}/show', 'UserController@show')->name('show')->middleware(['permission:view.users','permission:edit.users']);
         Route::post('/edited', 'UserController@edited')->name('edited')->middleware(['permission:edit.users']);
         Route::post('/deleted', 'UserController@deleted')->name('deleted')->middleware(['permission:delete.users']);
+        Route::get('/create', 'UserController@create')->name('create')->middleware(['permission:create.users']);
+        Route::post('/created', 'UserController@created')->name('created')->middleware(['permission:create.users']);
+
+        Route::get('/test', function () {
+            return view('emails.sendPassword');
+        });
     });
 });

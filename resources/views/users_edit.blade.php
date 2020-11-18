@@ -204,10 +204,6 @@
             });
         }
 
-        function loadingOut(loading) {
-            loading.out();
-        }
-
         function edit() {
             $('#edit').hide();
             $('#delete').hide();

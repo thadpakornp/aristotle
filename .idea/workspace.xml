@@ -152,7 +152,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605507220612</updated>
-      <workItem from="1605507222032" duration="46011000" />
+      <workItem from="1605507222032" duration="49626000" />
     </task>
     <servers />
   </component>
@@ -164,10 +164,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605532207395" />
-    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605585886836">
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605676304215">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605585886836" />
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605676304214" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1605513364411">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -188,10 +189,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="790" y="248" key="NewPhpClassDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605610678460" />
-    <state x="794" y="448" key="NewPhpFileDialog" timestamp="1605593313399">
+    <state x="794" y="448" key="NewPhpFileDialog" timestamp="1605677036582">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="794" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605593313399" />
+    <state x="794" y="448" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605677036582" />
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1605603149818">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
