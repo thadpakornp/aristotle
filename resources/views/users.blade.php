@@ -42,16 +42,21 @@
                                                     alt="{{ $user->name }} {{ $user->surname }}"/>
                                             </div>
                                         </td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->email }} @if($user->id == auth()->user()->id) <font color="red"><br/>This you</font> @endif</td>
                                         <td>{{ $user->name }} {{ $user->surname }}</td>
                                         <td>{{ $user->phone }}</td>
                                     </tr>
                                 @empty
+                                    <tr>
+                                        <td colspan="4"> ไม่พบข้อมูล </td>
+                                    </tr>
                                 @endforelse
                                 </tbody>
                             </table>
                         </div>
-                        {!! $users->render() !!}
+                        <div class="text-center">
+                            {!! $users->render() !!}
+                        </div>
                     </div>
                 </div>
                 @include('layouts.footer')

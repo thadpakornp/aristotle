@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth','verified'], 'as' => 'backend.', 'prefix' 
     Route::group(['middleware' => ['role:admin'], 'as' => 'users.', 'prefix' => 'users'], function() {
         Route::get('/index', 'UserController@index')->name('index')->middleware('permission:view.users');
         Route::get('/{id}/show', 'UserController@show')->name('show')->middleware(['permission:view.users','permission:edit.users']);
+        Route::post('/edited', 'UserController@edited')->name('edited')->middleware(['permission:edit.users']);
         Route::post('/deleted', 'UserController@deleted')->name('deleted')->middleware(['permission:delete.users']);
     });
 });

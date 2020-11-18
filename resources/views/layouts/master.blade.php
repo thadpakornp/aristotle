@@ -258,6 +258,32 @@
         //     }
         // });
     });
+
+    @if(session('error'))
+    Swal.fire(
+        'เกิดข้อผิดพลาด!',
+        '{{ session("error") }}',
+        'error'
+    )
+    @endif
+
+    @if(session('success'))
+    Swal.fire(
+        'สำเร็จ!',
+        '{{ session("success") }}',
+        'success'
+    )
+    @endif
+
+    @if($errors->any())
+    @foreach($errors->all() as $error)
+    Swal.fire(
+        'เกิดข้อผิดพลาด!',
+        '{{ session($error) }}',
+        'error'
+    )
+    @endforeach
+    @endif
 </script>
 
 </body>

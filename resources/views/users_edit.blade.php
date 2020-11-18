@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{ route('backend.users.edited') }}" method="post" class="form-horizontal" enctype="multipart/form-data" id="edit-profile-form">
                             @csrf
                             <input type="hidden" value="{{ $user->id }}" name="id">
                             <div class="card">
@@ -85,7 +85,7 @@
                                         <div class="col col-sm-6">
                                             <select class="form-control" id="input-role" name="role" disabled>
                                                 @foreach($rules as $rule)
-                                                    <option value="{{ $rule->slug }}" @if($user->hasRole($rule->slug) == $rule->slug) selected @endif>
+                                                    <option value="{{ $rule->id }}" @if($user->hasRole($rule->slug) == $rule->slug) selected @endif>
                                                         {{ $rule->name }}
                                                     </option>
                                                 @endforeach
@@ -160,8 +160,9 @@
     </div>
     @include('layouts.footer')
 @endsection
-
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js" integrity="sha512-UdIMMlVx0HEynClOIFSyOrPggomfhBKJE28LKl8yR3ghkgugPnG6iLfRfHwushZl1MOPSY6TsuBDGPK2X4zYKg==" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
         function deleted() {
             Swal.fire({
@@ -212,8 +213,9 @@
             $('#delete').hide();
             $('#submit').show();
             $('#cancel').show();
-            $('#input-status').prop("disabled", false);
             $('#input-role').prop("disabled", false);
+            $('#input-name').prop("disabled", false);
+            $('#input-surname').prop("disabled", false);
         }
 
         function canceled()
@@ -222,8 +224,32 @@
             $('#delete').show();
             $('#submit').hide();
             $('#cancel').hide();
-            $('#input-status').prop("disabled", true);
             $('#input-role').prop("disabled", true);
+            $('#input-name').prop("disabled", true);
+            $('#input-surname').prop("disabled", true);
         }
+    </script>
+@endsection
+@section('script_ready')
+    <script type="text/javascript">
+        $(function (){
+            $("#edit-profile-form").validate({
+                errorClass: "is-invalid",
+                validClass: "is-valid",
+                focusInvalid: true,
+                rules: {
+                    name: "required",
+                    surname: "required",
+                },
+                messages: {
+                    name: "ไม่สามารถเป็นค่าว่างได้ กรุณาตรวจสอบ",
+                    surname: "ไม่สามารถเป็นค่าว่างได้ กรุณาตรวจสอบ",
+                },
+                submitHandler: function(form) {
+                    var loading = new Loading();
+                    form.submit();
+                }
+            });
+        });
     </script>
 @endsection
