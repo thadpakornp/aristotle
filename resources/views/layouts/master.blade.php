@@ -200,8 +200,11 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                                                 <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
