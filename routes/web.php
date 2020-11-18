@@ -32,5 +32,9 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/create', 'UserController@create')->name('create')->middleware(['permission:create.users']);
             Route::post('/created', 'UserController@created')->name('created')->middleware(['permission:create.users']);
         });
+
+        Route::group(['middleware' => ['role:admin'], 'as' => 'store.', 'prefix'=>'store'], function (){
+            Route::get('/index', 'StoreController@index')->name('index')->middleware(['permission:view.store']);
+        });
     });
 });
