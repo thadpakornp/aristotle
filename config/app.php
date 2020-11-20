@@ -2,6 +2,8 @@
 
 return [
 
+    'GOOGLE_MAPS_API_KEY' => 'AIzaSyCJCfFuMVJpGGUVSGmmMQIG7YUoQArtW8w',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

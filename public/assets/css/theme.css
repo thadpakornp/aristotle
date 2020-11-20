@@ -3472,7 +3472,7 @@ section {
 }
 
 .au-message-list {
-    height: 424px;
+    height: 100%;
     position: relative;
     overflow-y: auto;
 }
@@ -3555,7 +3555,7 @@ section {
 }
 
 .au-message__item-time {
-    margin-top: 26px;
+    /*margin-top: 26px;*/
 }
 
 .au-message__item-time span {
@@ -3623,7 +3623,7 @@ section {
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
-    position: absolute;
+    /*position: absolute;*/
     bottom: 0;
     right: 0;
 }
@@ -3853,7 +3853,7 @@ section {
 }
 
 .au-message {
-    width: 50%;
+    width: 100%;
 }
 
 .au-chat {

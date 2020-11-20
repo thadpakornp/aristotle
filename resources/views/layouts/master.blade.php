@@ -47,9 +47,7 @@
         <div class="header-mobile__bar">
             <div class="container-fluid">
                 <div class="header-mobile-inner">
-                    <a class="logo" href="#">
-                        <img src="{{ asset('images/icon/logo.png') }}" alt=""/>
-                    </a>
+                    <strong><h1>Aristotle</h1></strong>
                     <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -92,9 +90,7 @@
     <!-- MENU SIDEBAR-->
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
-            <a href="#">
-                <img src="{{ asset('images/icon/logo.png') }}" alt="Cool Admin"/>
-            </a>
+                <strong><h1>Aristotle</h1></strong>
         </div>
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
@@ -182,8 +178,8 @@
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
                                         <img
-                                            src="@if(auth()->user()->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset(auth()->user()->profile) }} @endif"
-                                            alt="{{ auth()->user()->name }} {{ auth()->user()->surname }}"/>
+                                            src="@if(auth()->user()->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset('images/icon/'.auth()->user()->profile) }} @endif"
+                                            alt="{{ auth()->user()->name }} {{ auth()->user()->surname }}" width="100px" height="100px"/>
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn"
@@ -194,8 +190,8 @@
                                             <div class="image">
                                                 <a href="#">
                                                     <img
-                                                        src="@if(auth()->user()->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset(auth()->user()->profile) }} @endif"
-                                                        alt="{{ auth()->user()->name }} {{ auth()->user()->surname }}"/>
+                                                        src="@if(auth()->user()->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset('images/icon/'.auth()->user()->profile) }} @endif"
+                                                        alt="{{ auth()->user()->name }} {{ auth()->user()->surname }}" width="100px" height="100px"/>
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -206,13 +202,25 @@
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
+                                            @role('user')
                                             <div class="account-dropdown__item">
-                                                <a href="#" class="text-danger">
+                                                <a href="{{ route('backend.create_channel') }}" class="text-danger">
                                                     <i class="zmdi zmdi-edit text-danger"></i>Create Channel</a>
                                             </div>
+                                            @endrole
+                                            @role('store')
                                             <div class="account-dropdown__item">
-                                                <a href="#">
+                                                <a href="{{ route('backend.store.index') }}" class="text-primary">
+                                                    <i class="zmdi zmdi-book text-primary"></i>My Channel</a>
+                                            </div>
+                                            @endrole
+                                            <div class="account-dropdown__item">
+                                                <a href="{{ route('backend.profile') }}">
                                                     <i class="zmdi zmdi-account"></i>Account</a>
+                                            </div>
+                                            <div class="account-dropdown__item">
+                                                <a href="{{ route('backend.password') }}">
+                                                    <i class="zmdi zmdi-key"></i>Password</a>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
@@ -273,21 +281,21 @@
 
 <script type="text/javascript">
     $(function () {
-        // document.addEventListener('contextmenu', function(e) {
-        //     e.preventDefault();
-        // });
-        //
-        // $(document).keydown(function(e){
-        //     if(e.which === 123){
-        //         return false;
-        //     }
-        // });
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        $(document).keydown(function(e){
+            if(e.which === 123){
+                return false;
+            }
+        });
     });
 
     @if(session('error'))
     Swal.fire(
         'เกิดข้อผิดพลาด!',
-        {{ session('error') }},
+        '{{ session("error") }}',
         'error'
     )
     @endif
@@ -295,7 +303,7 @@
     @if(session('success'))
     Swal.fire(
         'สำเร็จ!',
-        {{ session('success') }},
+        '{{ session("success") }}',
         'success'
     )
     @endif

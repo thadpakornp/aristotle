@@ -70,14 +70,15 @@
                                         @if($user->profile != null)
                                             <div class="image">
                                                 <img
-                                                    src="{{ asset($user->profile) }}"
-                                                    alt="{{ $user->name }} {{ $user->surname }}"/>
+                                                    src="{{ asset('images/icon/'.$user->profile) }}"
+                                                    alt="{{ $user->name }} {{ $user->surname }}" width="120px" height="120px"/>
                                             </div>
                                         @endif
                                         </div>
                                     </div>
                                     <hr/>
 
+                                    @if(!$user->hasRole('store'))
                                     <div class="row form-group">
                                         <div class="col col-sm-5">
                                             <label for="input-role" class=" form-control-label">Role</label>
@@ -93,6 +94,7 @@
                                         </div>
                                     </div>
                                     <hr/>
+                                    @endif
 
 
                                     <div class="row form-group">
@@ -209,7 +211,7 @@
             $('#delete').hide();
             $('#submit').show();
             $('#cancel').show();
-            $('#input-role').prop("disabled", false);
+            @if(!$user->hasRole('store')) $('#input-role').prop("disabled", false); @endif
             $('#input-name').prop("disabled", false);
             $('#input-surname').prop("disabled", false);
         }
@@ -220,7 +222,7 @@
             $('#delete').show();
             $('#submit').hide();
             $('#cancel').hide();
-            $('#input-role').prop("disabled", true);
+            @if(!$user->hasRole('store')) $('#input-role').prop("disabled", true); @endif
             $('#input-name').prop("disabled", true);
             $('#input-surname').prop("disabled", true);
         }

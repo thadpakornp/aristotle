@@ -7,9 +7,7 @@
             <div class="login-wrap">
                 <div class="login-content">
                     <div class="login-logo">
-                        <a href="#">
-                            <img src="{{ asset('images/icon/logo.png') }}" alt="CoolAdmin">
-                        </a>
+                        <strong><h1>Aristotle</h1></strong>
                     </div>
                     <div class="login-form">
                         <form method="POST" action="{{ route('password.update') }}">

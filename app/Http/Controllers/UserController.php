@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PasswordAfterRegisterByUser;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,12 @@ class UserController extends Controller
         return view('users_edit', compact('user','rules'));
     }
 
+    public function profile(){
+        $user = User::find(auth()->user()->id);
+
+        return view('profile_edit', compact('user'));
+    }
+
     public function deleted(Request $request)
     {
         $user = User::destroy($request->input('id'));
@@ -52,6 +59,47 @@ class UserController extends Controller
         };
 
         return back()->with(['error', 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง']);
+    }
+
+    public function profileedited(Request $request)
+    {
+
+        $user = User::find($request->input('id'));
+        if(empty($user)){
+            return back()->with(['error', 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง']);
+        }
+        $data['name'] = $request->input('name');
+        $data['surname'] = $request->input('surname');
+        $data['phone'] = $request->input('phone') ? Crypt::encryptString($request->input('phone')) : null;
+
+        if($request->file('profile')){
+            $newIamgeName = Str::random(8).date('YmdHis').'.'.$request->file('profile')->getClientOriginalExtension();
+            $request->file('profile')->move(public_path('assets/images/icon/'), $newIamgeName);
+
+            $data['profile'] = $newIamgeName;
+        }
+        if(!$user->update($data)){
+            return back()->with(['error', 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง']);
+        }
+        return back()->with('success', 'แก้ไขเรียบร้อยแล้ว');
+    }
+
+    public function password()
+    {
+        return view('password');
+    }
+
+    public function passwordchange(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        if (!password_verify($request->input('old_password'), $user->password)) {
+            return back()->with(['error', 'รหัสผ่านเดิมไม่ถูกต้อง']);
+        }
+        $user->password = Hash::make($request->input('password'));
+        if (!$user->save()) {
+            return back()->with(['error', 'ไม่สามารถเปลี่ยนรหัสผ่านได้']);
+        }
+        return back()->with(['success', 'เปลี่ยนรหัสผ่านแล้ว']);
     }
 
     public function create()
@@ -82,8 +130,9 @@ class UserController extends Controller
         $data['email'] = $request->input('email');
         $data['password'] = Hash::make($password);
         $data['phone'] = $request->input('phone') ? Crypt::encryptString($request->input('phone')) : null;
+        $data['email_verified_at'] = Carbon::now();
 
-        $user = User::create($data)->syncRoles($role);
+        $user = User::forceCreate($data)->syncRoles($role);
         if($user){
             Mail::to($request->input('email'))->send(new PasswordAfterRegisterByUser($password));
             return redirect()->route('backend.users.index')->with(['success', 'บันทึกเรียบร้อยแล้ว']);

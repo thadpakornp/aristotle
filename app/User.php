@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'surname', 'phone', 'email', 'password',
+        'name', 'surname', 'phone', 'email', 'password', 'profile',
     ];
 
     /**
@@ -44,6 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPhoneAttribute($phone)
     {
+        if($phone == null){
+            return null;
+        }
         try {
             return Crypt::decryptString($phone);
         } catch (\Exception $e) {

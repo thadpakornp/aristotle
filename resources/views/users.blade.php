@@ -38,8 +38,8 @@
                                         <td>
                                             <div class="image">
                                                 <img
-                                                    src="@if($user->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset($user->profile) }} @endif"
-                                                    alt="{{ $user->name }} {{ $user->surname }}"/>
+                                                    src="@if($user->profile == null) {{ asset('images/icon/avatar-01.jpg') }} @else {{ asset('images/icon/'.$user->profile) }} @endif"
+                                                    alt="{{ $user->name }} {{ $user->surname }}" width="120px" height="120px"/>
                                             </div>
                                         </td>
                                         <td>{{ $user->email }} @if($user->id == auth()->user()->id) <font color="red"><br/>This you</font> @endif</td>
