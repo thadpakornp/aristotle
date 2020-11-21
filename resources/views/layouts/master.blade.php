@@ -63,11 +63,11 @@
                         <a href="{{ route('backend.home') }}">
                             <i class="fas fa-home"></i>Home</a>
                     </li>
+                    @role('admin')
                     <li>
                         <a href="{{ route('backend.store.index') }}">
                             <i class="fas fa-book"></i>Channels List</a>
                     </li>
-                    @role('admin')
                     <li class="has-sub">
                         <a class="js-arrow" href="#">
                             <i class="fas fa-user"></i>Authentication</a>
