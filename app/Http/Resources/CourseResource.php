@@ -19,7 +19,7 @@ class CourseResource extends JsonResource
             "courseid" => $this->id,
             "coursenameth" => $this->name_th,
             "coursenameen" => $this->name_en,
-            "courseprofessor" => $this->professor,
+            "courseprofessor" => $this->professor == null ? "null" : $this->professor,
             "coursefullcost" => number_format($this->full_cost),
             "coursediscountcost" => number_format($this->discount_cost),
             "coursecover" => $this->cover == null ? "null" : $this->cover,

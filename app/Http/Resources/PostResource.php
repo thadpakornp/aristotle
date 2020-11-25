@@ -20,10 +20,10 @@ class PostResource extends JsonResource
         return [
             'postid' => $this->postid,
             'userpost' => UserPostResuorce::make(User::find($this->userpost)),
-            'postdescription' => $this->description,
+            'postdescription' => $this->description == null ? "null" : $this->description,
             'posttag' => $this->posttag == '0' ? 'สาธารณะ' : "null",
-            'postglat' => $this->postglat == null ? 'null' : floatval($this->postglat),
-            'postglng' => $this->postglng == null ? 'null' : floatval($this->postglng),
+            'postglat' => $this->postglat == null ? 'null' : $this->postglat,
+            'postglng' => $this->postglng == null ? 'null' : $this->postglng,
             'postcommenttotal' => $this->postcommenttotal,
             'postliketotal' => $this->postliketotal,
             'postdate' => Carbon::parse($this->postcreatedat)->locale('th')->diffForHumans(),
