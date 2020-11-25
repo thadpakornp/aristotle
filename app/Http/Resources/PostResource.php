@@ -27,7 +27,7 @@ class PostResource extends JsonResource
             'postcommenttotal' => $this->postcommenttotal,
             'postliketotal' => $this->postliketotal,
             'postdate' => Carbon::parse($this->postcreatedat)->locale('th')->diffForHumans(),
-            'postfile' => PostFile::where('post_id',$this->postid)->count() > 0 ? PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->get()) : 'null'
+            'postfile' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->get())
         ];
     }
 }
