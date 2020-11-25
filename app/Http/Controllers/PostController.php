@@ -110,7 +110,7 @@ class PostController extends Controller
 
     public function stroed(Request $request)
     {
-        if($request->input('description') == null && !$request->file('file')){
+        if($request->input('description') == null && !$request->file('file') && $request->input('g_location_lat') == '13.744674' && $request->input('g_location_long') == '100.5633683'){
             return back()->with(['error', 'ไม่สามารถบันทึกข้อมูลว่างได้']);
         }
 

@@ -32,6 +32,7 @@ Route::group(['middleware' => ['api','activity']], function () {
 
         //PostController
         Route::post('/newpost', 'Api\PostApiController@newpost')->name('newpost');
+        Route::post('/deleted', 'Api\PostApiController@deleted')->name('deleted');
 
         //CommentController
         Route::get('/getcomment/{id}', 'Api\CommentApiController@getComment')->name('getcomment');
@@ -40,5 +41,7 @@ Route::group(['middleware' => ['api','activity']], function () {
 
         //UserController
         Route::get('/user', 'Api\UserApiController@getUser')->name('user');
+        Route::post('/changepassword', 'Api\UserApiController@changepassword')->name('changepassword');
+        Route::post('/changeprofile', 'Api\UserApiController@changeprofile')->name('changeprofile');
     });
 });
