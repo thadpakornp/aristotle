@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,33 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::group(['middleware' => ['api','activity']], function () {
+    Route::post('/register', 'Api\RegisterApiController@register')->name('register');
+    Route::post('/login', 'Api\LoginApiController@login')->name('login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    //HomeController
+    Route::post('/home', 'Api\HomeApiController@index')->name('home');
+    Route::post('/loadmore', 'Api\HomeApiController@loadmore')->name('loadmore');
+
+    Route::group(['middleware' => ['auth:api'], 'prefix' => 'backend', 'as' => 'backend.'], function () {
+        Route::post('/logout', 'Api\LoginApiController@logout')->name('logout');
+
+        //HomeControllerWithLogin
+        Route::post('/homewithlogin', 'Api\HomeApiController@index')->name('homewithlogin');
+        Route::post('/loadmorewithlogin', 'Api\HomeApiController@loadmore')->name('loadmorewithlogin');
+
+        Route::post('/followandunfollow','Api\HomeApiController@followandunfollow')->name('followandunfollow');
+        Route::post('/likeandunlike','Api\HomeApiController@likeandinlike')->name('likeandunlike');
+
+        //PostController
+        Route::post('/newpost', 'Api\PostApiController@newpost')->name('newpost');
+
+        //CommentController
+        Route::get('/getcomment/{id}', 'Api\CommentApiController@getComment')->name('getcomment');
+        Route::post('/comment', 'Api\CommentApiController@comment')->name('comment');
+        Route::post('/comment/deleted', 'Api\CommentApiController@commentdeleted')->name('deleted');
+
+        //UserController
+        Route::get('/user', 'Api\UserApiController@getUser')->name('user');
+    });
 });

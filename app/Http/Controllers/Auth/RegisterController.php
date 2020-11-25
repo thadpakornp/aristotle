@@ -68,9 +68,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if(User::count() == 0){
-            $role = config('roles.models.role')::where('name', '=', 'Super Admin')->first();
+            $role = config('roles.models.role')::where('slug', '=', 'admin')->first();
         } else {
-            $role = config('roles.models.role')::where('name', '=', 'User')->first();
+            $role = config('roles.models.role')::where('slug', '=', 'user')->first();
         }
 
         $user = User::create([

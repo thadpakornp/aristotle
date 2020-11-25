@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Crypt;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
     use HasRoleAndPermission;
     use SoftDeletes;
 
@@ -30,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'deleted_at', 'created_at', 'updated_at'
     ];
 
     /**
@@ -44,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getPhoneAttribute($phone)
     {
-        if($phone == null){
+        if ($phone == null) {
             return null;
         }
         try {

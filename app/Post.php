@@ -16,7 +16,7 @@ class Post extends Model
     public function scopeLimit30days($query)
     {
         $dt = Carbon::create(date('Y'), date('m'), date('d'), 0);
-        return $query->where('created_at', '>=', $dt->subDays(30));
+        return $query->where('post.created_at', '>=', $dt->subDays(30));
     }
 
     public function files()

@@ -15,6 +15,7 @@ class CreatePostCommentTable extends Migration
     {
         Schema::create('post_comment', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('post_id')->constrained('post')->onUpdate('cascade')->onDelete('cascade');
             $table->string('description')->nullable();
             $table->softDeletes();

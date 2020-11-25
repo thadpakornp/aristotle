@@ -39,6 +39,13 @@ class StoreController extends Controller
             \request()->session()->forget('upload_id_channel');
         }
         $store = Store::find($id);
+
+        if(!auth()->user()->hasRole('admin')){
+            if($store->user_id != auth()->user()->id){
+                return back()->withErrors('Not allow');
+            }
+        }
+
         $provinces = Province::all(['PROVINCE_ID', 'PROVINCE_NAME']);
 
         $p = Province::where('PROVINCE_NAME',$store->province)->first();

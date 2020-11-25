@@ -15,6 +15,7 @@
         "jeremykenedy/laravel-logger": "^4.0",
         "jeremykenedy/laravel-roles": "^4.0",
         "laravel/framework": "^7.0",
+        "laravel/passport": "7.5.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.4"
     },
@@ -42,6 +43,9 @@
         "classmap": [
             "database/seeds",
             "database/factories"
+        ],
+        "files": [
+            "app/Helpers/ResponeReturnFromApi.php"
         ]
     },
     "autoload-dev": {
