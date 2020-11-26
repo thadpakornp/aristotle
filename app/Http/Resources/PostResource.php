@@ -20,7 +20,7 @@ class PostResource extends JsonResource
         return [
             'postid' => $this->postid,
             'userpost' => UserPostResuorce::make(User::find($this->userpost)),
-            'postdescription' => $this->description == null ? "null" : $this->description,
+            'postdescription' => $this->postdescription == null ? "null" : $this->postdescription,
             'posttag' => $this->posttag == '0' ? 'สาธารณะ' : "null",
             'postglat' => $this->postglat == null ? 'null' : $this->postglat,
             'postglng' => $this->postglng == null ? 'null' : $this->postglng,

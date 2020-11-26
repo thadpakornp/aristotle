@@ -17,7 +17,11 @@ Route::group(['middleware' => ['api','activity']], function () {
     Route::post('/login', 'Api\LoginApiController@login')->name('login');
 
     //HomeController
-    Route::post('/home', 'Api\HomeApiController@index')->name('home');
+    Route::post('/home', 'Api\HomeApiController@indexposts')->name('home');
+    Route::post('/home/channel', 'Api\HomeApiController@indexchannel')->name('homechannel');
+    Route::post('/home/course', 'Api\HomeApiController@indexcourses')->name('homecourse');
+
+
     Route::post('/loadmore', 'Api\HomeApiController@loadmore')->name('loadmore');
 
     Route::group(['middleware' => ['auth:api'], 'prefix' => 'backend', 'as' => 'backend.'], function () {

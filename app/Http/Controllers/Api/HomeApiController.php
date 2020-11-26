@@ -17,16 +17,12 @@ use Illuminate\Support\Facades\DB;
 
 class HomeApiController extends Controller
 {
-    public function index(Request $request)
+    public function indexposts(Request $request)
     {
         try {
-            $store = $this->getStores();
-            $course = $this->getCourses();
             $post = $this->getPosts($request->input('start'), $request->input('limit'));
 
             $data = [
-                'stores' => HomeStoreResource::collection($store),
-                'courses' => CourseResource::collection($course),
                 'posts' => PostResource::collection($post)
             ];
 
@@ -35,6 +31,37 @@ class HomeApiController extends Controller
             return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
         }
 
+    }
+
+    public function indexcourses(Request $request)
+    {
+        try {
+            $course = $this->getCourses();
+
+            $data = [
+                'courses' => CourseResource::collection($course),
+            ];
+
+            return response()->json(ResponeReturnFromApi::responseRequestSuccess($data));
+        } catch (\Exception $e) {
+            return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
+        }
+
+    }
+
+    public function indexchannel(Request $request)
+    {
+        try {
+            $store = $this->getStores();
+
+            $data = [
+                'stores' => HomeStoreResource::collection($store),
+            ];
+
+            return response()->json(ResponeReturnFromApi::responseRequestSuccess($data));
+        } catch (\Exception $e) {
+            return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
+        }
     }
 
     public function loadmore(Request $request)
