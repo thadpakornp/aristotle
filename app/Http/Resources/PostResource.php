@@ -27,7 +27,8 @@ class PostResource extends JsonResource
             'postcommenttotal' => $this->postcommenttotal,
             'postliketotal' => $this->postliketotal,
             'postdate' => Carbon::parse($this->postcreatedat)->locale('th')->diffForHumans(),
-            'postfile' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->get())
+            'postfileimg' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','!=','pdf')->get()),
+            'postfilepdf' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','=','pdf')->get())
         ];
     }
 }

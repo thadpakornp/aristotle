@@ -16,7 +16,7 @@ class PostFileResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => asset('media/'.$this->name),
             'old' => $this->old_name,
             'typefile' => $this->type_file
         ];

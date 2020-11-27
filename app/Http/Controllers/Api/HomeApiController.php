@@ -117,7 +117,7 @@ class HomeApiController extends Controller
 
     private function getCourses($start, $limit)
     {
-        return Course::withoutTrashed()->leftJoin('course_like', 'course.id', '=', 'course_like.course_id')->select('course.id as id', 'course.name_th as name_th', 'course.name_en as name_en', 'course.professor as professor', 'course.full_cost as full_cost', 'course.discount_cost as discount_cost', 'course.cover as cover', 'course.num_course as num_course', 'course.num_hour as num_hour', 'course.num as num', 'course.type_course as type_course', 'course.description as description', DB::raw('count(course_like.course_id) as courseliketotal'))->skip($start)->take($limit)->groupBy('course.id')->get();
+        return Course::withoutTrashed()->leftJoin('course_like', 'course.id', '=', 'course_like.course_id')->select('course.id as id', 'course.name_th as name_th', 'course.name_en as name_en', 'course.professor as professor', 'course.full_cost as full_cost', 'course.discount_cost as discount_cost', 'course.cover as cover', 'course.num_course as num_course', 'course.num_hour as num_hour', 'course.num as num', 'course.type_course as type_course', 'course.description as description','course.stores_id as storesid', DB::raw('count(course_like.course_id) as courseliketotal'))->skip($start)->take($limit)->groupBy('course.id')->get();
     }
 
     private function getPosts($start, $limit)
