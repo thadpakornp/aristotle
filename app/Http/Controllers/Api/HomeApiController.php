@@ -36,7 +36,24 @@ class HomeApiController extends Controller
     public function indexcourses(Request $request)
     {
         try {
-            $course = $this->getCourses();
+            $course = $this->getCourses(0,10);
+
+            $data = [
+                'courses' => CourseResource::collection($course),
+            ];
+
+            return response()->json(ResponeReturnFromApi::responseRequestSuccess($data));
+        } catch (\Exception $e) {
+            return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
+        }
+
+    }
+
+
+    public function indexcoursesall(Request $request)
+    {
+        try {
+            $course = $this->getCourses($request->input('start'), $request->input('limit'));
 
             $data = [
                 'courses' => CourseResource::collection($course),
@@ -52,7 +69,22 @@ class HomeApiController extends Controller
     public function indexchannel(Request $request)
     {
         try {
-            $store = $this->getStores();
+            $store = $this->getStores(0,10);
+
+            $data = [
+                'stores' => HomeStoreResource::collection($store),
+            ];
+
+            return response()->json(ResponeReturnFromApi::responseRequestSuccess($data));
+        } catch (\Exception $e) {
+            return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
+        }
+    }
+
+    public function indexchannelall(Request $request)
+    {
+        try {
+            $store = $this->getStores($request->input('start'), $request->input('limit'));
 
             $data = [
                 'stores' => HomeStoreResource::collection($store),
@@ -78,14 +110,14 @@ class HomeApiController extends Controller
         }
     }
 
-    private function getStores()
+    private function getStores($start, $limit)
     {
-        return Store::withoutTrashed()->leftJoin('store_follow', 'stores.id', '=', 'store_follow.store_id')->leftJoin('course', 'stores.id', '=', 'course.stores_id')->leftJoin('stores_image', 'stores.id', '=', 'stores_image.stores_id')->select('stores.id as storesid', 'stores.name as storesname', DB::raw('count(course.stores_id) as coursetotal'), 'stores.description as storesdescription', 'stores.address as storesadrress', 'stores.district as storesdistrict', 'stores.amphur as storesamphur', 'stores.province as storesprovince', 'stores.zipcode as storeszipcode', 'stores.phone as storesphone', 'stores.email as storesemail', 'stores.line as storesline', 'stores.g_lat as storesglat', 'stores.g_lng as storesglng', 'stores_image.name as storesimagename', DB::raw('count(store_follow.store_id) as storefollowtotal'))->where('stores.status', '1')->groupBy('course.stores_id')->groupBy('store_follow.store_id')->orderByDesc('storefollowtotal')->take(10)->get();
+        return Store::withoutTrashed()->leftJoin('store_follow', 'stores.id', '=', 'store_follow.store_id')->leftJoin('stores_image', 'stores.id', '=', 'stores_image.stores_id')->select('stores.id as storesid', 'stores.name as storesname', 'stores.description as storesdescription', 'stores.address as storesadrress', 'stores.district as storesdistrict', 'stores.amphur as storesamphur', 'stores.province as storesprovince', 'stores.zipcode as storeszipcode', 'stores.phone as storesphone', 'stores.email as storesemail', 'stores.line as storesline', 'stores.g_lat as storesglat', 'stores.g_lng as storesglng', 'stores_image.name as storesimagename', DB::raw('count(store_follow.store_id) as storefollowtotal'))->where('stores.status', '1')->skip($start)->take($limit)->groupBy('stores.id')->orderByDesc('storefollowtotal')->get();
     }
 
-    private function getCourses()
+    private function getCourses($start, $limit)
     {
-        return Course::withoutTrashed()->leftJoin('course_like', 'course.id', '=', 'course_like.course_id')->select('course.id as id', 'course.name_th as name_th', 'course.name_en as name_en', 'course.professor as professor', 'course.full_cost as full_cost', 'course.discount_cost as discount_cost', 'course.cover as cover', 'course.num_course as num_course', 'course.num_hour as num_hour', 'course.num as num', 'course.type_course as type_course', 'course.description as description', DB::raw('count(course_like.course_id) as courseliketotal'))->groupBy('course.id')->take(10)->get();
+        return Course::withoutTrashed()->leftJoin('course_like', 'course.id', '=', 'course_like.course_id')->select('course.id as id', 'course.name_th as name_th', 'course.name_en as name_en', 'course.professor as professor', 'course.full_cost as full_cost', 'course.discount_cost as discount_cost', 'course.cover as cover', 'course.num_course as num_course', 'course.num_hour as num_hour', 'course.num as num', 'course.type_course as type_course', 'course.description as description', DB::raw('count(course_like.course_id) as courseliketotal'))->skip($start)->take($limit)->groupBy('course.id')->get();
     }
 
     private function getPosts($start, $limit)

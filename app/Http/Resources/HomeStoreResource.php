@@ -28,7 +28,7 @@ class HomeStoreResource extends JsonResource
         return [
             "storesid" => $this->storesid,
             "storesname" => $this->storesname,
-            "coursetotal" => $this->coursetotal,
+            "coursetotal" => Course::withoutTrashed()->where('stores_id',$this->storesid)->count(),
             "storesdescription" => $this->storesdescription,
             "storesadrress" => $this->storesadrress,
             "storesdistrict" => $this->storesdistrict,
@@ -40,7 +40,7 @@ class HomeStoreResource extends JsonResource
             "storesline" => $this->storesline == null ? "null" : Crypt::decryptString($this->storesline),
             "storesglat" => $this->storesglat == null ? "null" : $this->storesglat,
             "storesglng" => $this->storesglng == null ? "null" : $this->storesglng,
-            "storesimagename" => asset('media/'.$this->storesimagename),
+            "storesimagename" => $this->storesimagename == null ? "null" : asset('media/'.$this->storesimagename),
             "storesimage" => StoreFile::where('stores_id',$this->storesid)->count() > 0 ? StoreImage::collection(StoreFile::where('stores_id',$this->storesid)->get()) : "null",
             "storesfollow" => auth()->check() ? StoreFollow::where('user_id', auth()->user()->id)->where('store_id',$this->storesid)->count() > 0 ? true : false : false,
             "storescourse" => Course::withoutTrashed()->where('stores_id',$this->storesid)->count() > 0 ? StoreCourseResource::collection(Course::withoutTrashed()->where('stores_id',$this->storesid)->get()) : "null"

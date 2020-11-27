@@ -21,6 +21,8 @@ Route::group(['middleware' => ['api','activity']], function () {
     Route::post('/home/channel', 'Api\HomeApiController@indexchannel')->name('homechannel');
     Route::post('/home/course', 'Api\HomeApiController@indexcourses')->name('homecourse');
 
+    Route::post('/course/all', 'Api\HomeApiController@indexcoursesall')->name('homecourseall');
+    Route::post('/channel/all', 'Api\HomeApiController@indexchannelall')->name('homechannelall');
 
     Route::post('/loadmore', 'Api\HomeApiController@loadmore')->name('loadmore');
 
