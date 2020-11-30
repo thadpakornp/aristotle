@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Course;
+use App\CourseLike;
 use App\Helpers\ResponeReturnFromApi;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CourseResource;
 use App\Http\Resources\HomeStoreResource;
 use App\Http\Resources\PostResource;
 use App\Post;
-use App\PostLike;
 use App\Store;
 use App\StoreFollow;
 use Illuminate\Http\Request;
@@ -122,16 +122,16 @@ class HomeApiController extends Controller
 
     private function getPosts($start, $limit)
     {
-        return Post::withoutTrashed()->leftJoin('post_comment', 'post.id', '=', 'post_comment.post_id')->leftJoin('post_like', 'post.id', '=', 'post_like.post_id')->select('post.id as postid', 'post.user_id as userpost', 'post.description as postdescription', 'post.tag as posttag', 'post.g_lat as postglat', 'post.g_lng as postglng', 'post.created_at as postcreatedat', DB::raw('count(post_comment.post_id) as postcommenttotal'), DB::raw('count(post_like.post_id) as postliketotal'))->Limit30days()->skip($start)->take($limit)->groupBy('post.id')->orderByDesc('post.created_at')->get();
+        return Post::withoutTrashed()->leftJoin('post_comment', 'post.id', '=', 'post_comment.post_id')->leftJoin('post_like', 'post.id', '=', 'post_like.post_id')->select('post.id as postid', 'post.user_id as userpost', 'post.description as postdescription', 'post.tag as posttag', 'post.g_lat as postglat', 'post.g_lng as postglng', 'post.created_at as postcreatedat', 'post.user_id as userid', DB::raw('count(post_comment.post_id) as postcommenttotal'), DB::raw('count(post_like.post_id) as postliketotal'))->Limit30days()->skip($start)->take($limit)->groupBy('post.id')->orderByDesc('post.created_at')->get();
     }
 
     public function likeandinlike(Request $request)
     {
         try {
-            $likeandunlike = PostLike::where('post_id', $request->input('id'))->where('user_id', auth()->user()->id);
+            $likeandunlike = CourseLike::where('course_id', $request->input('id'))->where('user_id', auth()->user()->id);
             if ($likeandunlike->count() == 0) {
-                PostLike::create([
-                    'post_id' => $request->input('id'),
+                CourseLike::create([
+                    'course_id' => $request->input('id'),
                     'user_id' => auth()->user()->id
                 ]);
             } else {

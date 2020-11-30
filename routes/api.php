@@ -30,8 +30,15 @@ Route::group(['middleware' => ['api','activity']], function () {
         Route::post('/logout', 'Api\LoginApiController@logout')->name('logout');
 
         //HomeControllerWithLogin
-        Route::post('/homewithlogin', 'Api\HomeApiController@index')->name('homewithlogin');
+        Route::post('/homewithlogin', 'Api\HomeApiController@indexposts')->name('homewithlogin');
         Route::post('/loadmorewithlogin', 'Api\HomeApiController@loadmore')->name('loadmorewithlogin');
+
+        Route::post('/homechannelwithlogin', 'Api\HomeApiController@indexchannel')->name('homechannelwithlogin');
+
+        Route::post('/channel/allwithlogin', 'Api\HomeApiController@indexchannelall')->name('homechannelallwithlogin');
+        Route::post('/course/allwithlogin', 'Api\HomeApiController@indexcoursesall')->name('homecourseallwithlogin');
+
+        Route::post('/homecoursewithlogin', 'Api\HomeApiController@indexcourses')->name('homecoursewithlogin');
 
         Route::post('/followandunfollow','Api\HomeApiController@followandunfollow')->name('followandunfollow');
         Route::post('/likeandunlike','Api\HomeApiController@likeandinlike')->name('likeandunlike');
@@ -39,6 +46,8 @@ Route::group(['middleware' => ['api','activity']], function () {
         //PostController
         Route::post('/newpost', 'Api\PostApiController@newpost')->name('newpost');
         Route::post('/deleted', 'Api\PostApiController@deleted')->name('deleted');
+        Route::post('/post/likeandunlike', 'Api\PostApiController@likeandunlike')->name('postlikeandunlike');
+
 
         //CommentController
         Route::get('/getcomment/{id}', 'Api\CommentApiController@getComment')->name('getcomment');

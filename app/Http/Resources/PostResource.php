@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\PostFile;
+use App\PostLike;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,6 +27,8 @@ class PostResource extends JsonResource
             'postglng' => $this->postglng == null ? 'null' : $this->postglng,
             'postcommenttotal' => $this->postcommenttotal,
             'postliketotal' => $this->postliketotal,
+            'postuserid' => $this->userid,
+            'postuserlike' => auth()->check() ? PostLike::where('post_id',$this->postid)->where('user_id',auth()->user()->id)->count() > 0 ? true : false : false,
             'postdate' => Carbon::parse($this->postcreatedat)->locale('th')->diffForHumans(),
             'postfileimg' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','!=','pdf')->get()),
             'postfilepdf' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','=','pdf')->get())

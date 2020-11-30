@@ -54,9 +54,9 @@ return [
     |
     */
 
-    'url' => 'http://192.168.0.116:81/aristotle_dev',
+    'url' => 'http://192.168.43.202:81/aristotle_dev',
 
-    'asset_url' => 'http://192.168.0.116:81/aristotle_dev/public/assets',
+    'asset_url' => 'http://192.168.43.202:81/aristotle_dev/public/assets',
 
     /*
     |--------------------------------------------------------------------------

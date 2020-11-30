@@ -43,7 +43,8 @@ class HomeStoreResource extends JsonResource
             "storesimagename" => $this->storesimagename == null ? "null" : asset('media/'.$this->storesimagename),
             "storesimage" => StoreFile::where('stores_id',$this->storesid)->count() > 0 ? StoreImage::collection(StoreFile::where('stores_id',$this->storesid)->get()) : "null",
             "storesfollow" => auth()->check() ? StoreFollow::where('user_id', auth()->user()->id)->where('store_id',$this->storesid)->count() > 0 ? true : false : false,
-            "storescourse" => Course::withoutTrashed()->where('stores_id',$this->storesid)->count() > 0 ? StoreCourseResource::collection(Course::withoutTrashed()->where('stores_id',$this->storesid)->get()) : "null"
+            "storescourse" => Course::withoutTrashed()->where('stores_id',$this->storesid)->count() > 0 ? StoreCourseResource::collection(Course::withoutTrashed()->where('stores_id',$this->storesid)->get()) : "null",
+            "storefollowtotal" => StoreFollow::where('store_id',$this->storesid)->count()
         ];
     }
 

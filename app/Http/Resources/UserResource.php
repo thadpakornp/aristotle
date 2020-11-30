@@ -21,7 +21,8 @@ class UserResource extends JsonResource
             'userphone' => $this->phone,
             'useremail' => $this->email,
             'userprofile' => $this->profile == null ? "null" : asset('images/icon/'.$this->profile),
-            'userrole' => auth()->check() ? $this->userRole() : 'null'
+            'userrole' => auth()->check() ? $this->userRole() : 'null',
+            'userverify' => $this->email_verified_at
         ];
     }
 

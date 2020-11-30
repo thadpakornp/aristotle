@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\AccessTokenApi;
 use App\Helpers\ResponeReturnFromApi;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -38,6 +39,22 @@ class LoginApiController extends Controller
                     $tokenResult->token->expires_at
                 )->toDateTimeString()
             ];
+
+            $tokendevice = AccessTokenApi::where('uuid_device',$request->input('uuid_device'));
+            if($tokendevice->count() > 0){
+                //updatde
+                $updatetoken = $tokendevice->first();
+                $updatetoken->totken_device = $request->input('token_device');
+                $updatetoken->user_id = $user->id;
+                $updatetoken->save();
+            } else {
+                //create
+                AccessTokenApi::create([
+                    'user_id' => $user->id,
+                    'token_device' => $request->input('token_device'),
+                    'uuid_device' => $request->input('uuid_device')
+                ]);
+            }
 
             return ResponeReturnFromApi::responseRequestSuccess($data);
         } else {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CourseLike;
 use App\Helpers\ResponeReturnFromApi;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\PostFile;
+use App\PostLike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -66,6 +68,24 @@ class PostApiController extends Controller
             return response()->json(ResponeReturnFromApi::responseRequestSuccess('บันทึกรายการเรียบร้อยแล้ว'));
         }catch (\Exception $e){
             DB::rollBack();
+            return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
+        }
+    }
+
+    public function likeandunlike(Request $request)
+    {
+        try {
+            $likeandunlike = PostLike::where('post_id', $request->input('id'))->where('user_id', auth()->user()->id);
+            if ($likeandunlike->count() == 0) {
+                CourseLike::create([
+                    'post_id' => $request->input('id'),
+                    'user_id' => auth()->user()->id
+                ]);
+            } else {
+                $likeandunlike->first()->delete();
+            }
+            return response()->json(ResponeReturnFromApi::responseRequestSuccess('บันทึกรายการเรียบร้อยแล้ว'));
+        } catch (\Exception $e) {
             return response()->json(ResponeReturnFromApi::responseRequestError($e->getMessage()));
         }
     }

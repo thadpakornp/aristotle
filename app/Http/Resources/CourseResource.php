@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\CourseFile;
+use App\CourseLike;
 use App\Store;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -37,7 +38,8 @@ class CourseResource extends JsonResource
             "coursedescription" => $this->description,
             "coursefile" => CourseFile::where('course_id',$this->id)->count() > 0 ? CourseImage::collection(CourseFile::where('course_id',$this->id)->get()) : "null",
             "courselike" => $this->courseliketotal,
-            "courselocation" => Store::where('id',$this->storesid)->first(['g_lat','g_lng'])
+            "courselocation" => Store::where('id',$this->storesid)->first(['g_lat','g_lng']),
+            "cousseuserlike" => auth()->check() ? CourseLike::where('user_id',auth()->user()->id)->where('course_id',$this->id)->count() > 0 ? true : false : false
         ];
     }
 }
