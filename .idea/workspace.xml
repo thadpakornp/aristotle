@@ -20,21 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad790f6e-8f99-44a9-a643-0456160eff2d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/AccessTokenApi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/assets/media/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/CommentSave.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Jobs/SentNotifyComment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/fcm.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_12_01_152400_create_notifications_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aristotle_dev.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aristotle_dev.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/LoginApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CommentApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CommentApiController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PostApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/PostApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/RegisterApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/CourseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/CourseResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/HomeStoreResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/HomeStoreResource.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/PostResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/PostResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/StoreCourseResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/StoreCourseResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/UserResource.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/media/1606209289880admin of education hero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,6 +168,7 @@
       <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
       <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/apility/laravel-fcm" />
     </include_path>
   </component>
   <component name="ProjectId" id="1kMOupYyJeELMcRCsNcZHBYLs3t" />
@@ -184,7 +185,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/assets" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -215,7 +216,8 @@
       <workItem from="1606102153393" duration="21934000" />
       <workItem from="1606191189704" duration="34757000" />
       <workItem from="1606316303790" duration="4732000" />
-      <workItem from="1606366220968" duration="34260000" />
+      <workItem from="1606366220968" duration="39016000" />
+      <workItem from="1606801572512" duration="7314000" />
     </task>
     <servers />
   </component>
@@ -242,11 +244,11 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605532207395" />
-    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606663184382">
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606814649586">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1606228833871" />
-    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606663184382" />
+    <state x="690" y="280" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1606814649586" />
     <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1605513364411">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -272,17 +274,18 @@
     </state>
     <state x="794" y="448" key="NewPhpFileDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605884242283" />
     <state x="794" y="448" key="NewPhpFileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605677036582" />
-    <state x="461" y="170" key="SettingsEditor" timestamp="1606707493920">
+    <state x="447" y="268" key="SettingsEditor" timestamp="1606720904931">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="461" y="170" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1606707493920" />
+    <state x="447" y="268" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1606720904931" />
     <state x="667" y="81" width="585" height="888" key="find.popup" timestamp="1605813028275">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="667" y="81" width="585" height="888" key="find.popup/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605813028275" />
-    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1605603149818">
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1606814954186">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605603149818" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1606814954186" />
   </component>
 </project>

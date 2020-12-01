@@ -28,7 +28,7 @@ class PostResource extends JsonResource
             'postcommenttotal' => $this->postcommenttotal,
             'postliketotal' => $this->postliketotal,
             'postuserid' => $this->userid,
-            'postuserlike' => auth()->check() ? PostLike::where('post_id',$this->postid)->where('user_id',auth()->user()->id)->count() > 0 ? true : false : false,
+            'postuserlike' => auth()->check() ? PostLike::where('post_id',$this->postid)->where('user_id',auth()->user()->id)->count() == 0  ? false : true : false,
             'postdate' => Carbon::parse($this->postcreatedat)->locale('th')->diffForHumans(),
             'postfileimg' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','!=','pdf')->get()),
             'postfilepdf' => PostFileResource::collection(PostFile::withoutTrashed()->where('post_id',$this->postid)->where('type_file','=','pdf')->get())

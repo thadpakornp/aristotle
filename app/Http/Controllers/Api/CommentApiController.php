@@ -7,6 +7,7 @@ use App\CommentFile;
 use App\Helpers\ResponeReturnFromApi;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Jobs\CommentSave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -54,6 +55,9 @@ class CommentApiController extends Controller
                     }
                 }
                 DB::commit();
+
+                CommentSave::dispatch(auth()->user()->id,$request->input('postid'),'0');
+
                 return response()->json(ResponeReturnFromApi::responseRequestSuccess('บันทึกเรียบร้อยแล้ว'));
             }
             DB::rollBack();

@@ -77,7 +77,7 @@ class PostApiController extends Controller
         try {
             $likeandunlike = PostLike::where('post_id', $request->input('id'))->where('user_id', auth()->user()->id);
             if ($likeandunlike->count() == 0) {
-                CourseLike::create([
+                PostLike::create([
                     'post_id' => $request->input('id'),
                     'user_id' => auth()->user()->id
                 ]);
